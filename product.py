@@ -2,12 +2,14 @@
 products = []
 with open('products.csv', 'r', encoding = 'utf-8') as f:
     for line in f:
+        if '商品,價格' in line:
+            continue
         name, price = line.strip().split(',')    #strip去除頭尾空格及換行符號
                                                  #aplit字串切割,以逗點當切割標準
         products.append([name, price])
 print(products)
 
-
+#使用者輸入
 while True:
     name = input('輸入商品名稱: ')
     if name == 'q':
@@ -20,6 +22,7 @@ while True:
     products.append(p) #products.append([name, price])
 print(products)
 
+#印出所有商品
 for p in products:
     print(p[0], '的價格是', p[1])
 
