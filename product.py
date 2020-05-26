@@ -1,5 +1,19 @@
 import os #operating system
 
+main()
+
+def main():
+    filename = 'products.csv'
+    if os.path.isfile(filename):  #檢查檔案是否存在(絕對路徑or相對路徑檔)
+        print('找到檔案!')
+        products = read_file(filename)
+    else:
+        print('找不到檔案!')
+        
+    products = user_input(products)
+    print_products(products)
+    write_file(filename, products)
+
 def read_file(filename):
     products = []
     with open(filename, 'r', encoding = 'utf-8') as f:
@@ -37,17 +51,3 @@ def write_file(filename,products):
         f.write('商品,價格\n')
         for p in products:
             f.write(p[0] + ',' + p[1] + '\n')  #寫入檔案，寫入csv檔用,和換行做區隔
-
-def main():
-    filename = 'products.csv'
-    if os.path.isfile(filename):  #檢查檔案是否存在(絕對路徑or相對路徑檔)
-        print('找到檔案!')
-        products = read_file(filename)
-    else:
-        print('找不到檔案!')
-        
-    products = user_input(products)
-    print_products(products)
-    write_file(filename, products)
-
-main()
